@@ -21,7 +21,7 @@
     <div class="falling-hearts-container"></div>
 
     <div class="music-control" id="musicBtn"><i class="fa-solid fa-music"></i></div>
-    <audio id="bgMusic" loop><source src="assets/music/wedding-song.mp3" type="audio/mp3"></audio>
+    <audio id="bgMusic" loop autoplay><source src="assets/music/wedding-song.mp3" type="audio/mp3"></audio>
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -193,17 +193,28 @@
                 <h2>Hộp Mừng Cưới</h2>
             </div>
             
-            <div class="donate-grid">
-                <div class="donate-card" data-aos="zoom-in-right">
-                    <h3>Mừng Chú Rể</h3>
-                    <img id="bankGroomQr" src="" alt="QR" class="qr-code">
-                    <p class="bank-info"><span id="bankGroomName"></span><br><span id="bankGroomNum"></span><br><span id="bankGroomAcc"></span></p>
+            <div class="donate-box" data-aos="zoom-in">
+                
+                <div class="donate-content" id="donateContent">
+                    <div class="donate-icon"><i class="fa-solid fa-gift"></i></div>
+                    <p>Sự hiện diện của bạn là món quà trân quý nhất đối với chúng mình.</p>
+                    <p>Tuy nhiên, nếu bạn muốn gửi món quà chúc phúc từ xa, vui lòng nhấn vào nút bên dưới.</p>
+                    <button class="btn-outline" id="btnShowQr">Gửi quà mừng <i class="fa-solid fa-heart"></i></button>
                 </div>
-                <div class="donate-card" data-aos="zoom-in-left">
-                    <h3>Mừng Cô Dâu</h3>
-                    <img id="bankBrideQr" src="" alt="QR" class="qr-code">
-                    <p class="bank-info"><span id="bankBrideName"></span><br><span id="bankBrideNum"></span><br><span id="bankBrideAcc"></span></p>
+
+                <div class="donate-grid hidden" id="qrContainer">
+                    <div class="donate-card">
+                        <h3>Mừng Chú Rể</h3>
+                        <img id="bankGroomQr" src="" alt="QR" class="qr-code">
+                        <p class="bank-info"><span id="bankGroomName"></span><br><span id="bankGroomNum"></span><br><span id="bankGroomAcc"></span></p>
+                    </div>
+                    <div class="donate-card">
+                        <h3>Mừng Cô Dâu</h3>
+                        <img id="bankBrideQr" src="" alt="QR" class="qr-code">
+                        <p class="bank-info"><span id="bankBrideName"></span><br><span id="bankBrideNum"></span><br><span id="bankBrideAcc"></span></p>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>

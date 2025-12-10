@@ -2,20 +2,20 @@
     "weddingDate": "2025-12-31T11:00:00",
     "couple": {
         "groom": {
-            "name": "Văn Tài",
+            "name": "Mai Văn Tài",
             "image": "assets/img/groom.jpg",
             "job": "Kỹ sư Điện Lực",
             "jobIcon": "fa-bolt",
-            "desc": "Chàng kỹ sư mang ánh sáng đến muôn nơi, nhưng ánh sáng rực rỡ nhất đời anh chính là nụ cười của Thu Thảo.",
+            "desc": "Chàng kỹ sư mang ánh sáng đến muôn nơi, nhưng ánh sáng rực rỡ nhất đời anh chính là nụ cười của Phương Thảo.",
             "bank": {
                 "qr": "assets/img/qr-groom.jpg",
                 "bankName": "Vietcombank",
                 "number": "0123456789",
-                "accountName": "NGUYEN VAN TAI"
+                "accountName": "MAI VAN TAI"
             }
         },
         "bride": {
-            "name": "Thu Thảo",
+            "name": "Lê Phương Thảo",
             "image": "assets/img/bride.jpg",
             "job": "Giáo viên Tiếng Anh",
             "jobIcon": "fa-book-open",
@@ -24,27 +24,27 @@
                 "qr": "assets/img/qr-bride.jpg",
                 "bankName": "Techcombank",
                 "number": "9876543210",
-                "accountName": "TRAN THI THU THAO"
+                "accountName": "LE PHUONG THAO"
             }
         }
     },
     "family": {
         "groom": {
-            "father": "Nguyễn Văn A",
-            "mother": "Trần Thị B",
-            "address": "Xã Hải Đường, Huyện Hải Hậu, Nam Định"
+            "father": "Mai Văn Tám",
+            "mother": "Hoàng Thị Hiên",
+            "address": "Thôn Nội Chế, Xã Hiến Khánh, Tỉnh Ninh Bình"
         },
         "bride": {
-            "father": "Phạm Văn C",
-            "mother": "Lê Thị D",
-            "address": "Xã Xuân Ninh, Huyện Xuân Trường, Nam Định"
+            "father": "Lê Thanh Sinh",
+            "mother": "Nguyễn Thị Thu",
+            "address": "164 Đ. Thượng Hữu, P. Nam Định, Tỉnh Ninh Bình"
         }
     },
     "story": [
         {
             "title": "Lần đầu gặp gỡ",
             "date": "15/06/2020",
-            "content": "Tình cờ gặp nhau tại thư viện tỉnh Nam Định...",
+            "content": "Tình cờ gặp nhau tại thư viện...",
             "side": "left"
         },
         {
@@ -65,15 +65,20 @@
             "title": "Tiệc Cưới Nhà Trai",
             "time": "11:00 - 31/12/2025",
             "place": "Tư gia nhà trai",
-            "address": "Xã Hải Đường, Huyện Hải Hậu, Nam Định",
+            "address": "Thôn Nội Chế, Xã Hiến Khánh, Tỉnh Ninh Bình",
             "mapLink": "https://goo.gl/maps/example"
         },
         "bride": {
             "title": "Lễ Vu Quy (Nhà Gái)",
             "time": "09:00 - 30/12/2025",
             "place": "Tư gia nhà gái",
-            "address": "Xã Xuân Ninh, Huyện Xuân Trường, Nam Định",
+            "address": "164 Đ. Thượng Hữu, P. Nam Định, Tỉnh Ninh Bình",
             "mapLink": "https://goo.gl/maps/example"
         }
+    },
+    "gallery": {
+        "count": 20, 
+        "folder": "assets/img/gallery/",
+        "extension": ".jpg"
     }
 }

@@ -1,25 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
     
+    // --- CẤU HÌNH GOOGLE FORM (ĐÃ CẬP NHẬT CHÍNH XÁC ID CỦA BẠN) ---
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScGw4jbQIgVrIIin7xhEdIg64X-Jt3eOcY6wnje_W2jPe087w/formResponse';
+    
+    const ENTRY_NAME = 'entry.1621575620';    // Tên
+    const ENTRY_PHONE = 'entry.1036267141';   // SĐT
+    const ENTRY_STATUS = 'entry.1284648260';  // Tham dự
+    const ENTRY_MESSAGE = 'entry.658808536';  // Lời chúc
+
     // 1. KHỞI TẠO AOS
     AOS.init({ duration: 1000, once: true });
 
-    // 2. LOAD DATA
+    // 2. LOAD DATA JSON
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
             loadWeddingData(data);
             startCountdown(data.weddingDate);
         })
-        .catch(error => console.error('Lỗi: Cần chạy trên Server để đọc file JSON', error));
+        .catch(error => console.error('Lỗi: Cần chạy trên Server để đọc JSON', error));
 
     function loadWeddingData(data) {
-        // Hero
         document.getElementById('heroGroom').innerText = data.couple.groom.name;
         document.getElementById('heroBride').innerText = data.couple.bride.name;
         const d = new Date(data.weddingDate);
         document.getElementById('heroDate').innerText = `${d.getDate()} Tháng ${d.getMonth() + 1} Năm ${d.getFullYear()}`;
 
-        // Couple
         document.getElementById('groomName').innerText = data.couple.groom.name;
         document.getElementById('groomImg').src = data.couple.groom.image;
         document.getElementById('groomJob').innerHTML = `<i class="fa-solid ${data.couple.groom.jobIcon}"></i> ${data.couple.groom.job}`;
@@ -30,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('brideJob').innerHTML = `<i class="fa-solid ${data.couple.bride.jobIcon}"></i> ${data.couple.bride.job}`;
         document.getElementById('brideDesc').innerText = data.couple.bride.desc;
 
-        // Family
         document.getElementById('groomFather').innerText = data.family.groom.father;
         document.getElementById('groomMother').innerText = data.family.groom.mother;
         document.getElementById('groomAddress').innerText = data.family.groom.address;
@@ -39,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('brideMother').innerText = data.family.bride.mother;
         document.getElementById('brideAddress').innerText = data.family.bride.address;
 
-        // Story (Timeline)
+        // Timeline
         const timelineContainer = document.getElementById('storyTimeline');
         let storyHTML = '';
         data.story.forEach((item) => {
@@ -74,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('eventBrideAddress').innerText = data.events.bride.address;
         document.getElementById('eventBrideMap').href = data.events.bride.mapLink;
 
-        // Gallery Load More
+        // Gallery
         const galleryContainer = document.getElementById('galleryContainer');
         const viewMoreBtn = document.getElementById('viewMoreBtn');
         if (galleryContainer && data.gallery) {
@@ -141,58 +146,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1000);
     }
 
-    // 4. MUSIC AUTOPLAY (QUAN TRỌNG)
+    // 4. MUSIC AUTOPLAY
     const musicBtn = document.getElementById("musicBtn");
     const bgMusic = document.getElementById("bgMusic");
     let isPlaying = false;
-
     if(musicBtn && bgMusic) {
-        // Hàm cố gắng phát nhạc
         function playAudio() {
             if (isPlaying) return;
-            bgMusic.play().then(() => {
-                isPlaying = true;
-                musicBtn.classList.remove("paused");
-            }).catch(error => {
-                console.log("Autoplay blocked, waiting for interaction...");
-            });
+            bgMusic.play().then(() => { isPlaying = true; musicBtn.classList.remove("paused"); }).catch(() => {});
         }
-
-        // 1. Thử phát ngay khi tải
         playAudio();
-
-        // 2. Nếu thất bại, phát ngay khi người dùng chạm/cuộn/click lần đầu
         document.addEventListener('click', playAudio, { once: true });
         document.addEventListener('touchstart', playAudio, { once: true });
         document.addEventListener('scroll', playAudio, { once: true });
-
-        // Toggle nút nhạc
         musicBtn.addEventListener("click", function (e) {
             e.stopPropagation();
-            if (isPlaying) {
-                bgMusic.pause();
-                musicBtn.classList.add("paused");
-                isPlaying = false;
-            } else {
-                bgMusic.play();
-                musicBtn.classList.remove("paused");
-                isPlaying = true;
-            }
+            if (isPlaying) { bgMusic.pause(); musicBtn.classList.add("paused"); isPlaying = false; } 
+            else { bgMusic.play(); musicBtn.classList.remove("paused"); isPlaying = true; }
         });
     }
 
-    // 5. OTHER (Menu, Tim rơi, RSVP)
+    // 5. OTHER
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
     if(hamburger) {
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
-        });
-        document.querySelectorAll(".nav-menu li a").forEach(n => n.addEventListener("click", () => {
-            hamburger.classList.remove("active");
-            navMenu.classList.remove("active");
-        }));
+        hamburger.addEventListener("click", () => { hamburger.classList.toggle("active"); navMenu.classList.toggle("active"); });
+        document.querySelectorAll(".nav-menu li a").forEach(n => n.addEventListener("click", () => { hamburger.classList.remove("active"); navMenu.classList.remove("active"); }));
     }
 
     const heartsContainer = document.querySelector('.falling-hearts-container');
@@ -211,12 +190,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     setInterval(createHeart, 400);
 
+    // 6. SUBMIT FORM
     const rsvpForm = document.getElementById("rsvpForm");
     if(rsvpForm) {
         rsvpForm.addEventListener("submit", function(e) {
             e.preventDefault();
-            alert("Cảm ơn bạn đã gửi lời chúc!");
-            rsvpForm.reset();
+            const submitBtn = document.getElementById('submitBtn');
+            const originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Đang gửi...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append(ENTRY_NAME, document.getElementById('name').value);
+            formData.append(ENTRY_PHONE, document.getElementById('phone').value);
+            formData.append(ENTRY_STATUS, document.getElementById('status').value);
+            formData.append(ENTRY_MESSAGE, document.getElementById('message').value);
+
+            fetch(GOOGLE_FORM_URL, { method: 'POST', mode: 'no-cors', body: formData })
+            .then(() => { alert("Cảm ơn bạn đã gửi lời chúc!"); rsvpForm.reset(); })
+            .catch(err => { alert("Có lỗi xảy ra!"); console.error(err); })
+            .finally(() => { submitBtn.innerText = originalBtnText; submitBtn.disabled = false; });
         });
     }
 });

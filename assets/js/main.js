@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    // --- CẤU HÌNH GOOGLE FORM (ĐÃ CẬP NHẬT CHÍNH XÁC ID CỦA BẠN) ---
+    // --- CẤU HÌNH GOOGLE FORM ---
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScGw4jbQIgVrIIin7xhEdIg64X-Jt3eOcY6wnje_W2jPe087w/formResponse';
     const ENTRY_NAME = 'entry.1621575620';
     const ENTRY_PHONE = 'entry.1036267141';
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // 1. KHỞI TẠO AOS
     AOS.init({ duration: 1000, once: true });
 
-    // 2. LOAD DATA JSON
+    // 2. LOAD DATA
     fetch('data.json')
         .then(response => response.json())
         .then(data => {
@@ -43,14 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('brideMother').innerText = data.family.bride.mother;
         document.getElementById('brideAddress').innerText = data.family.bride.address;
 
-        // Timeline (ĐÃ BỎ ẢNH, CHỈ CÒN CHỮ)
+        // Timeline (Chỉ hiển thị text)
         const timelineContainer = document.getElementById('storyTimeline');
         let storyHTML = '';
         data.story.forEach((item) => {
             const aosEffect = item.side === 'left' ? 'fade-right' : 'fade-left';
             storyHTML += `
                 <div class="timeline-item ${item.side}" data-aos="${aosEffect}">
-                    <div class="timeline-img"></div> <div class="timeline-content">
+                    <div class="timeline-img"></div>
+                    <div class="timeline-content">
                         <div class="story-text">
                             <h3>${item.title}</h3>
                             <span class="date">${item.date}</span>
@@ -187,7 +188,19 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     setInterval(createHeart, 400);
 
-    // 6. SUBMIT FORM
+    // 6. DONATE TẾ NHỊ
+    const btnShowQr = document.getElementById('btnShowQr');
+    const donateContent = document.getElementById('donateContent');
+    const qrContainer = document.getElementById('qrContainer');
+    if (btnShowQr && donateContent && qrContainer) {
+        btnShowQr.addEventListener('click', function() {
+            donateContent.style.display = 'none';
+            qrContainer.classList.remove('hidden');
+            if (typeof AOS !== 'undefined') AOS.refresh();
+        });
+    }
+
+    // 7. SUBMIT FORM
     const rsvpForm = document.getElementById("rsvpForm");
     if(rsvpForm) {
         rsvpForm.addEventListener("submit", function(e) {

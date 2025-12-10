@@ -21,7 +21,7 @@
     <div class="falling-hearts-container"></div>
 
     <div class="music-control" id="musicBtn"><i class="fa-solid fa-music"></i></div>
-    <audio id="bgMusic" loop autoplay><source src="assets/music/wedding-song.mp3" type="audio/mp3"></audio>
+    <audio id="bgMusic" loop><source src="assets/music/wedding-song.mp3" type="audio/mp3"></audio>
 
     <nav class="navbar">
         <div class="container nav-container">
@@ -45,7 +45,6 @@
             <p class="sub-title">We Are Getting Married</p>
             <h1 class="main-title"><span id="heroGroom"></span> <span class="ampersand">&</span> <span id="heroBride"></span></h1>
             <p class="wedding-date" id="heroDate"></p>
-            
             <div id="countdown">
                 <div class="time-box"><span id="days">00</span><p>Ngày</p></div>
                 <div class="time-box"><span id="hours">00</span><p>Giờ</p></div>
@@ -62,7 +61,6 @@
                 <h2>Cô Dâu & Chú Rể</h2>
                 <p>Mảnh ghép hoàn hảo của cuộc đời nhau</p>
             </div>
-            
             <div class="couple-wrapper">
                 <div class="couple-card" data-aos="fade-right">
                     <div class="img-box"><img id="groomImg" src="" alt="Chú rể"></div>
@@ -73,9 +71,7 @@
                         <p class="desc" id="groomDesc"></p>
                     </div>
                 </div>
-
                 <div class="heart-center" data-aos="zoom-in"><i class="fa-solid fa-heart"></i></div>
-
                 <div class="couple-card" data-aos="fade-left">
                     <div class="img-box"><img id="brideImg" src="" alt="Cô dâu"></div>
                     <div class="info">
@@ -106,7 +102,6 @@
                     </div>
                     <p class="address"><i class="fa-solid fa-location-dot"></i> <span id="groomAddress"></span></p>
                 </div>
-
                 <div class="family-card" data-aos="fade-left">
                     <h3><i class="fa-solid fa-house-chimney-window"></i> Nhà Gái</h3>
                     <div class="parents-info">
@@ -137,34 +132,22 @@
                 <h2>Thời Gian & Địa Điểm</h2>
                 <p>Hân hạnh được đón tiếp quý khách</p>
             </div>
-
             <div class="event-grid">
                 <div class="event-card" data-aos="flip-left">
-                    <div class="event-img">
-                        <img id="eventGroomImg" src="" alt="Tiệc Cưới Nhà Trai">
-                    </div>
+                    <div class="event-img"><img id="eventGroomImg" src="" alt="Tiệc Cưới Nhà Trai"></div>
                     <div class="event-info">
                         <h3 id="eventGroomTitle"></h3>
                         <div class="event-time"><i class="fa-regular fa-clock"></i> <span id="eventGroomTime"></span></div>
-                        <div class="event-location">
-                            <i class="fa-solid fa-location-dot"></i> <span id="eventGroomPlace"></span>
-                            <br><span id="eventGroomAddress"></span>
-                        </div>
+                        <div class="event-location"><i class="fa-solid fa-location-dot"></i> <span id="eventGroomPlace"></span><br><span id="eventGroomAddress"></span></div>
                         <a id="eventGroomMap" href="#" target="_blank" class="btn-outline">Xem bản đồ</a>
                     </div>
                 </div>
-
                 <div class="event-card" data-aos="flip-right">
-                    <div class="event-img">
-                        <img id="eventBrideImg" src="" alt="Lễ Vu Quy">
-                    </div>
+                    <div class="event-img"><img id="eventBrideImg" src="" alt="Lễ Vu Quy"></div>
                     <div class="event-info">
                         <h3 id="eventBrideTitle"></h3>
                         <div class="event-time"><i class="fa-regular fa-clock"></i> <span id="eventBrideTime"></span></div>
-                        <div class="event-location">
-                            <i class="fa-solid fa-location-dot"></i> <span id="eventBridePlace"></span>
-                            <br><span id="eventBrideAddress"></span>
-                        </div>
+                        <div class="event-location"><i class="fa-solid fa-location-dot"></i> <span id="eventBridePlace"></span><br><span id="eventBrideAddress"></span></div>
                         <a id="eventBrideMap" href="#" target="_blank" class="btn-outline">Xem bản đồ</a>
                     </div>
                 </div>
@@ -178,9 +161,7 @@
                 <h2>Album Hạnh Phúc</h2>
                 <p>Những khoảnh khắc ngọt ngào nhất</p>
             </div>
-            
             <div class="gallery-grid" id="galleryContainer"></div>
-
             <div class="view-more-container" style="text-align: center; margin-top: 40px;">
                 <a id="viewMoreBtn" href="javascript:void(0)" class="btn-outline" style="display: none;">Xem thêm hình <i class="fa-solid fa-arrow-down"></i></a>
             </div>
@@ -192,7 +173,6 @@
             <div class="section-header" data-aos="fade-up">
                 <h2>Hộp Mừng Cưới</h2>
             </div>
-            
             <div class="donate-grid">
                 <div class="donate-card" data-aos="zoom-in-right">
                     <h3>Mừng Chú Rể</h3>
@@ -212,18 +192,26 @@
         <div class="overlay-light"></div>
         <div class="container rsvp-container" data-aos="fade-up">
             <h2>Bạn sẽ tham dự chứ?</h2>
+            <p style="margin-bottom: 25px; color: #fff;">Hãy xác nhận để chúng mình chuẩn bị đón tiếp chu đáo nhé!</p>
+            
             <form id="rsvpForm">
-                <div class="form-group"><input type="text" id="name" placeholder="Tên của bạn" required></div>
-                <div class="form-group"><input type="text" id="phone" placeholder="Số điện thoại" required></div>
                 <div class="form-group">
-                    <select id="status">
-                        <option value="yes">Chắc chắn tham dự</option>
-                        <option value="maybe">Có thể tham dự</option>
-                        <option value="no">Rất tiếc, mình bận mất rồi</option>
+                    <input type="text" id="name" name="name" placeholder="Tên của bạn" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="phone" name="phone" placeholder="Số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <select id="status" name="status">
+                        <option value="Có">Chắc chắn tham dự</option>
+                        <option value="Chưa chắc chắn">Có thể tham dự</option>
+                        <option value="Không">Rất tiếc, mình bận mất rồi</option>
                     </select>
                 </div>
-                <div class="form-group"><textarea id="message" placeholder="Lời chúc gửi tới cô dâu chú rể..."></textarea></div>
-                <button type="submit" class="btn-submit">Gửi xác nhận</button>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Lời chúc gửi tới cô dâu chú rể..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit" id="submitBtn">Gửi xác nhận</button>
             </form>
         </div>
     </section>

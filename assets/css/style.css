@@ -81,7 +81,7 @@ header { height: 100vh; background: linear-gradient(135deg, #ffe0e9 0%, #f080a0 
 .parent-name { font-size: 1.3rem; margin-bottom: 5px; color: var(--text-dark); font-family: var(--font-serif); font-weight: bold; }
 .address { color: #666; font-style: italic; margin-top: 30px; font-size: 1rem; border-top: 1px dashed #eee; padding-top: 20px; font-family: var(--font-body); }
 
-/* TIMELINE (BỎ ẢNH, CHẤM TRÒN FILL MÀU) */
+/* TIMELINE (NO IMAGE, DOT FILL) */
 #story { background-color: #fff; overflow-x: hidden; }
 .timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 20px 0; }
 .timeline::after { content: ''; position: absolute; width: 4px; background-color: #eee; top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; z-index: 0; }
@@ -116,12 +116,18 @@ header { height: 100vh; background: linear-gradient(135deg, #ffe0e9 0%, #f080a0 
 .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.5s ease; }
 .gallery-item:hover img { transform: scale(1.03); filter: brightness(1.05); }
 
-/* DONATE */
-.donate-grid { display: flex; justify-content: center; gap: 40px; margin-top: 30px; flex-wrap: wrap; }
-.donate-card { background: #fff; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.08); border: 1px solid #fff; }
+/* DONATE (TẾ NHỊ) */
+.donate-box { max-width: 800px; margin: 0 auto; text-align: center; }
+.donate-content { background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; }
+.donate-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 20px; animation: pulse 2s infinite; }
+.donate-content p { font-size: 1.1rem; color: #666; margin-bottom: 10px; font-family: var(--font-body); }
+.donate-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; animation: fadeIn 0.8s ease; margin-top: 30px; }
+.donate-card { background: #fff; padding: 40px; border-radius: 20px; text-align: center; box-shadow: 0 15px 30px rgba(0,0,0,0.08); border: 1px solid #fff; flex: 1; min-width: 300px; }
 .donate-card h3 { font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 20px; color: var(--primary-dark); font-weight: 700; }
 .qr-code { width: 180px; height: 180px; margin: 20px 0; border: 5px solid var(--secondary-color); border-radius: 12px; }
 .bank-info { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.8; color: #444; font-weight: 600; }
+.hidden { display: none !important; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* RSVP */
 #rsvp { background: linear-gradient(rgba(240, 128, 160, 0.7), rgba(240, 128, 160, 0.7)), url('../../assets/img/rsvp-bg.jpg'); background-size: cover; background-position: center; color: #fff; text-align: center; }

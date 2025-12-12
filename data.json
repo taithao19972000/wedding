@@ -1,5 +1,5 @@
 {
-    "weddingDate": "2025-12-31T11:00:00",
+    "weddingDate": "2025-12-28T14:00:00",
     "couple": {
         "groom": {
             "name": "Văn Tài",
@@ -9,8 +9,8 @@
             "desc": "Chàng kỹ sư mang ánh sáng đến muôn nơi, nhưng ánh sáng rực rỡ nhất đời anh chính là nụ cười của Phương Thảo.",
             "bank": {
                 "qr": "assets/img/qr-groom.jpg",
-                "bankName": "VietinBank",
-                "number": "0123456789",
+                "bankName": "Techcombank",
+                "number": "8161681997",
                 "accountName": "MAI VAN TAI"
             }
         },
@@ -22,8 +22,8 @@
             "desc": "Cô giáo dịu dàng gieo mầm tri thức. 'Teaching is a work of heart', và yêu anh cũng là việc của con tim.",
             "bank": {
                 "qr": "assets/img/qr-bride.jpg",
-                "bankName": "Techcombank",
-                "number": "9876543210",
+                "bankName": "BIDV",
+                "number": "8873317547",
                 "accountName": "LE PHUONG THAO"
             }
         }
@@ -75,7 +75,7 @@
             "time": "09:00 - 30/12/2025",
             "place": "Tư gia nhà gái",
             "address": "164 Đ. Thượng Hữu, P. Nam Định, Tỉnh Ninh Bình",
-            "mapLink": "https://maps.app.goo.gl/gse8E1zfm6Bxq5pd8"
+            "mapLink": "https://maps.app.goo.gl/85zthAwLBuG4bBGD8"
         }
     },
     "gallery": {

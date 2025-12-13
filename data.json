@@ -42,21 +42,21 @@
     },
     "story": [
         {
-            "title": "Lần đầu gặp gỡ",
-            "date": "15/06/2020",
-            "content": "Tình cờ gặp nhau tại thư viện ở Nam Định...",
+            "title": "Bắt đầu từ buổi học",
+            "date": "15/04/2023",
+            "content": "Chúng mình gặp gỡ từ những buổi học tiếng Anh. Từ mối quan hệ cô trò, sự đồng cảm và rung động đầu tiên đã nảy nở.",
             "side": "left"
         },
         {
-            "title": "Lời tỏ tình",
-            "date": "20/11/2022",
-            "content": "Ngày Nhà giáo Việt Nam, chàng kỹ sư đã lấy hết can đảm tỏ tình cô giáo.",
+            "title": "Lời hẹn ước",
+            "date": "20/09/2023",
+            "content": "Tình cảm chín mùi, chúng mình đã chính thức nên đôi khi em đồng ý lời tỏ tình của anh trên con đường mùa thu ngập tràn kỷ niệm.",
             "side": "right"
         },
         {
             "title": "Về chung một nhà",
-            "date": "31/12/2025",
-            "content": "Chúng mình quyết định gắn kết trọn đời vào ngày cuối cùng của năm.",
+            "date": "28/12/2025",
+            "content": "Quyết định gắn kết trọn đời, cả hai cùng nhau bước vào hành trình hôn nhân thiêng liêng vào ngày cuối cùng của năm.",
             "side": "left"
         }
     ],
@@ -75,11 +75,11 @@
             "time": "09:00 - 30/12/2025",
             "place": "Tư gia nhà gái",
             "address": "164 Đ. Thượng Hữu, P. Nam Định, Tỉnh Ninh Bình",
-            "mapLink": "https://maps.app.goo.gl/85zthAwLBuG4bBGD8"
+            "mapLink": "https://maps.app.goo.gl/zS1A9eLep3Kenhi3A"
         }
     },
     "gallery": {
-        "count": 10, 
+        "count": 9, 
         "folder": "assets/img/gallery/",
         "extension": ".jpg"
     }

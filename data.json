@@ -79,7 +79,9 @@
         }
     },
     "gallery": {
-        "count": 9, 
+        "count": 4, 
+        "initialCount": 4,
+        "enableViewMore": false,
         "folder": "assets/img/gallery/",
         "extension": ".jpg"
     },

@@ -82,5 +82,14 @@
         "count": 9, 
         "folder": "assets/img/gallery/",
         "extension": ".jpg"
+    },
+    "googleForm": {
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLScGw4jbQIgVrIIin7xhEdIg64X-Jt3eOcY6wnje_W2jPe087w/formResponse",
+        "entries": {
+            "name": "entry.1621575620",
+            "phone": "entry.1036267141",
+            "status": "entry.1284648260",
+            "message": "entry.658808536"
+        }
     }
 }

@@ -79,8 +79,19 @@
         }
     },
     "gallery": {
-        "count": 9, 
+        "count": 4, 
+        "initialCount": 4,
+        "enableViewMore": false,
         "folder": "assets/img/gallery/",
         "extension": ".jpg"
+    },
+    "googleForm": {
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSfIgsLKvAOVtyx7IymST_o0JSZP4RMfpN3_BZlzUMggyO7MxQ/formResponse",
+        "entries": {
+            "name": "entry.1621575620",
+            "phone": "entry.1036267141",
+            "status": "entry.1284648260",
+            "message": "entry.658808536"
+        }
     }
 }

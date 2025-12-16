@@ -1,12 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     
-    // --- CẤU HÌNH GOOGLE FORM ---
-    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScGw4jbQIgVrIIin7xhEdIg64X-Jt3eOcY6wnje_W2jPe087w/formResponse';
-    const ENTRY_NAME = 'entry.1621575620';
-    const ENTRY_PHONE = 'entry.1036267141';
-    const ENTRY_STATUS = 'entry.1284648260';
-    const ENTRY_MESSAGE = 'entry.658808536';
-
     // 1. KHỞI TẠO AOS
     AOS.init({ duration: 1000, once: true });
 
@@ -16,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             loadWeddingData(data);
             startCountdown(data.weddingDate);
+            setupGoogleForm(data.googleForm);
         })
         .catch(error => console.error('Lỗi: Cần chạy trên Server để đọc JSON', error));
 
@@ -82,8 +76,41 @@ document.addEventListener("DOMContentLoaded", function () {
         const viewMoreBtn = document.getElementById('viewMoreBtn');
         if (galleryContainer && data.gallery) {
             const totalImages = data.gallery.count;
+            const initialCount = data.gallery.initialCount || 6;
+            const enableViewMore = data.gallery.enableViewMore !== false; // Mặc định là true
             const imagesPerPage = 6; 
             let currentImageCount = 0;
+
+            // Ẩn nút "Xem thêm hình" nếu enableViewMore = false
+            if (!enableViewMore && viewMoreBtn) {
+                viewMoreBtn.style.display = 'none';
+            }
+
+            // Tối ưu bố cục dựa trên số lượng ảnh
+            function optimizeLayout() {
+                let columnCount = 3; // Mặc định
+                if (totalImages <= 3) {
+                    columnCount = 1;
+                } else if (totalImages <= 6) {
+                    columnCount = 2;
+                } else if (totalImages <= 12) {
+                    columnCount = 3;
+                } else if (totalImages <= 20) {
+                    columnCount = 4;
+                } else {
+                    columnCount = 5;
+                }
+                
+                // Áp dụng responsive
+                const width = window.innerWidth;
+                if (width <= 768) {
+                    columnCount = 1;
+                } else if (width <= 1024) {
+                    columnCount = Math.min(columnCount, 2);
+                }
+                
+                galleryContainer.style.columnCount = columnCount;
+            }
 
             function loadImages(count) {
                 let htmlToAdd = '';
@@ -98,12 +125,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
                 galleryContainer.insertAdjacentHTML('beforeend', htmlToAdd);
                 currentImageCount = end;
-                if (currentImageCount >= totalImages) { if(viewMoreBtn) viewMoreBtn.style.display = 'none'; } 
-                else { if(viewMoreBtn) viewMoreBtn.style.display = 'inline-block'; }
+                
+                // Chỉ hiển thị/ẩn nút nếu enableViewMore = true
+                if (enableViewMore) {
+                    if (currentImageCount >= totalImages) { 
+                        if(viewMoreBtn) viewMoreBtn.style.display = 'none'; 
+                    } else { 
+                        if(viewMoreBtn) viewMoreBtn.style.display = 'inline-block'; 
+                    }
+                }
                 setTimeout(() => { AOS.refresh(); }, 500); 
             }
-            loadImages(imagesPerPage);
-            if(viewMoreBtn) { viewMoreBtn.addEventListener('click', () => loadImages(imagesPerPage)); }
+            
+            // Tối ưu layout ban đầu và khi resize
+            optimizeLayout();
+            window.addEventListener('resize', optimizeLayout);
+            
+            // Load ảnh ban đầu
+            if (enableViewMore) {
+                // Nếu bật "Xem thêm", chỉ load số lượng ban đầu
+                loadImages(initialCount);
+            } else {
+                // Nếu tắt "Xem thêm", load tất cả ảnh ngay từ đầu
+                loadImages(totalImages);
+            }
+            
+            // Thêm event listener cho nút "Xem thêm" nếu được bật
+            if(enableViewMore && viewMoreBtn) { 
+                viewMoreBtn.addEventListener('click', () => loadImages(imagesPerPage)); 
+            }
         }
 
         // Bank / Footer
@@ -200,26 +250,64 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 7. SUBMIT FORM
-    const rsvpForm = document.getElementById("rsvpForm");
-    if(rsvpForm) {
-        rsvpForm.addEventListener("submit", function(e) {
-            e.preventDefault();
-            const submitBtn = document.getElementById('submitBtn');
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = 'Đang gửi...';
-            submitBtn.disabled = true;
+    // 7. SETUP GOOGLE FORM
+    function setupGoogleForm(googleFormConfig) {
+        if (!googleFormConfig || !googleFormConfig.url) {
+            console.warn('Google Form chưa được cấu hình trong data.json');
+            return;
+        }
 
-            const formData = new FormData();
-            formData.append(ENTRY_NAME, document.getElementById('name').value);
-            formData.append(ENTRY_PHONE, document.getElementById('phone').value);
-            formData.append(ENTRY_STATUS, document.getElementById('status').value);
-            formData.append(ENTRY_MESSAGE, document.getElementById('message').value);
+        // Kiểm tra entries đã được cấu hình
+        const entries = googleFormConfig.entries;
+        if (!entries || Object.keys(entries).length === 0) {
+            console.error('❌ Chưa có entries trong data.json');
+            console.log('📝 Hướng dẫn lấy entry IDs:');
+            console.log('   1. Mở Google Form trong trình duyệt');
+            console.log('   2. Nhấn F12 > Network tab');
+            console.log('   3. Submit form thử nghiệm');
+            console.log('   4. Tìm request "formResponse" > Payload/Form Data');
+            console.log('   5. Copy các entry IDs và paste vào data.json');
+            console.log('   6. Hoặc chạy: createEntryConfig("entry.XXX", "entry.XXX", "entry.XXX", "entry.XXX")');
+            return;
+        }
 
-            fetch(GOOGLE_FORM_URL, { method: 'POST', mode: 'no-cors', body: formData })
-            .then(() => { alert("Cảm ơn bạn đã gửi lời chúc!"); rsvpForm.reset(); })
-            .catch(err => { alert("Có lỗi xảy ra!"); console.error(err); })
-            .finally(() => { submitBtn.innerText = originalBtnText; submitBtn.disabled = false; });
-        });
+        console.log('✅ Sử dụng entries đã cấu hình:', entries);
+
+        const rsvpForm = document.getElementById("rsvpForm");
+        if(rsvpForm) {
+            rsvpForm.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const submitBtn = document.getElementById('submitBtn');
+                const originalBtnText = submitBtn.innerText;
+                submitBtn.innerText = 'Đang gửi...';
+                submitBtn.disabled = true;
+
+                const formData = new FormData();
+                formData.append(entries.name, document.getElementById('name').value);
+                formData.append(entries.phone, document.getElementById('phone').value);
+                formData.append(entries.status, document.getElementById('status').value);
+                formData.append(entries.message, document.getElementById('message').value);
+
+                fetch(googleFormConfig.url, { method: 'POST', mode: 'no-cors', body: formData })
+                .then(() => { alert("Cảm ơn bạn đã gửi lời chúc!"); rsvpForm.reset(); })
+                .catch(err => { alert("Có lỗi xảy ra!"); console.error(err); })
+                .finally(() => { submitBtn.innerText = originalBtnText; submitBtn.disabled = false; });
+            });
+        }
     }
+
+    // Helper: Tạo entry config từ các entry IDs (cho người dùng nhập thủ công)
+    window.createEntryConfig = function(nameEntry, phoneEntry, statusEntry, messageEntry) {
+        const config = {
+            entries: {
+                name: nameEntry || 'entry.XXXXX',
+                phone: phoneEntry || 'entry.XXXXX',
+                status: statusEntry || 'entry.XXXXX',
+                message: messageEntry || 'entry.XXXXX'
+            }
+        };
+        console.log('📋 Copy config này vào data.json:');
+        console.log(JSON.stringify(config, null, 2));
+        return config;
+    };
 });

@@ -44,13 +44,13 @@
         {
             "title": "Bắt đầu từ buổi học",
             "date": "15/04/2023",
-            "content": "Chúng mình gặp gỡ từ những buổi học tiếng Anh. Từ mối quan hệ cô trò, sự đồng cảm và rung động đầu tiên đã nảy nở.",
+            "content": "Chúng mình gặp nhau một cách tình cờ trong những buổi học tiếng Anh. Từ những cảm mến ban đầu, sự đồng cảm và rung động đầu tiên đã nảy nở.",
             "side": "left"
         },
         {
             "title": "Lời hẹn ước",
             "date": "20/09/2023",
-            "content": "Tình cảm chín mùi, chúng mình đã chính thức nên đôi khi em đồng ý lời tỏ tình của anh trên con đường mùa thu ngập tràn kỷ niệm.",
+            "content": "Tình cảm chín mùi, chúng mình đã chính thức nên đôi khi em đồng ý lời tỏ tình của anh trên con đường mùa thu ngập tràn kỷ niệm."
             "side": "right"
         },
         {
@@ -64,15 +64,15 @@
         "groom": {
             "title": "Tiệc Cưới Nhà Trai",
             "image": "assets/img/event-groom.jpg", 
-            "time": "11:00 - 31/12/2025",
+            "time": "09:30 - 28/12/2025",
             "place": "Tư gia nhà trai",
             "address": "Thôn Nội Chế, Xã Hiến Khánh, Tỉnh Ninh Bình",
             "mapLink": "https://maps.app.goo.gl/Wv6n8nzeNX1psMXC7"
         },
         "bride": {
-            "title": "Lễ Vu Quy (Nhà Gái)",
+            "title": "Tiệc Cưới Nhà Gái",
             "image": "assets/img/event-bride.jpg",
-            "time": "09:00 - 30/12/2025",
+            "time": "09:00 - 28/12/2025",
             "place": "Tư gia nhà gái",
             "address": "164 Đ. Thượng Hữu, P. Nam Định, Tỉnh Ninh Bình",
             "mapLink": "https://maps.app.goo.gl/zS1A9eLep3Kenhi3A"
